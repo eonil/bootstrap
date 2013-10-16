@@ -1,5 +1,6 @@
 #!/bin/tcsh
-echo "Written for csh."
+echo "Written for tcsh."
+echo "Run with /bin/tsch explicitly."
  
  
 
@@ -73,10 +74,7 @@ cd ..
  
 echo "Don't forget to add these lines to your login script to make sure"
 echo "to use Clang for all further builds."
-setenv CC clang
-setenv CXX clang++
-setenv CPP clang-cpp
-source /usr/GNUstep/System/Library/Makefiles/GNUstep.csh
+echo "source /usr/GNUstep/System/Library/Makefiles/GNUstep.csh"
  
  
  
