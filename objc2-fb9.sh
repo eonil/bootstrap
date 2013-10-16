@@ -47,7 +47,7 @@ gmake install
 cd ..
 
 echo "Now we need to set some path to GNUstep to use gnustep-make."
-source /usr/GNUstep/System/Library/Makefiles/GNUstep.csh
+echo "source /usr/GNUstep/System/Library/Makefiles/GNUstep.csh"
  
 cd base-1_24_5
 echo "I don't know why this named in this way… but the switch
@@ -74,7 +74,6 @@ cd ..
  
 echo "Don't forget to add these lines to your login script to make sure"
 echo "to use Clang for all further builds."
-echo "source /usr/GNUstep/System/Library/Makefiles/GNUstep.csh"
  
  
  
