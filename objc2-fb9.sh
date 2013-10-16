@@ -1,7 +1,8 @@
+#!/bin/tcsh
 echo "Written for csh."
  
  
- 
+
 echo "Switch to Clang. Ensure you're using 3.3 or above."
 setenv CC clang
 setenv CXX clang++
@@ -9,9 +10,11 @@ setenv CPP clang-cpp
  
  
 echo "Prerequisites."
+echo "I removed 'security/gnutls' package because I don't need it."
+echo "But it's required if you want TLS support in GNUstep."
 pkg_add -r portmaster
 cd /usr/ports
-portmaster --no-confirm -G security/gnutls textproc/libxslt devel/icu devel/libdispatch devel/libffi
+portmaster --no-confirm -G textproc/libxslt devel/icu devel/libdispatch devel/libffi
  
  
  
@@ -39,7 +42,7 @@ cd make-2_6_5
 ./configure --enable-objc-nonfragile-abi
 gmake install
 cd ..
- 
+
 echo "Now we need to set some path to GNUstep to use gnustep-make."
 source /usr/GNUstep/System/Library/Makefiles/GNUstep.csh
  
