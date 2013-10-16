@@ -16,6 +16,7 @@ portmaster --no-confirm -G security/gnutls textproc/libxslt devel/icu devel/libd
  
  
 echo "GNUstep(make:2.6.5, base:1.24.5) + libobjc2(1.7) on FreeBSD 9.2."
+echo "Versions are specified explicitly to prevent future break."
 cd ~/
 mkdir t1
 cd t1
