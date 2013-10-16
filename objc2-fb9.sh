@@ -12,7 +12,8 @@ setenv CPP clang-cpp
 echo "Prerequisites."
 echo "I removed 'security/gnutls' package because I don't need it."
 echo "But it's required if you want TLS support in GNUstep."
-portsnap --interactive fetch extract update
+portsnap fetch --interactive 
+portsnap extract update
 pkg_add -r portmaster
 cd /usr/ports
 portmaster --no-confirm -G textproc/libxslt devel/icu devel/libdispatch devel/libffi
