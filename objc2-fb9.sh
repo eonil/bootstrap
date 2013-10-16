@@ -10,10 +10,10 @@ setenv CPP clang-cpp
  
  
 echo "Prerequisites."
+echo "On FreeBSD 9.2, portsnap cannot be executed in a script."
+echo "Do it yourself manually if you didn't."
 echo "I removed 'security/gnutls' package because I don't need it."
-echo "But it's required if you want TLS support in GNUstep."
-portsnap fetch --interactive 
-portsnap extract update
+echo "But it's required if you want TLS support in GNUstep..."
 pkg_add -r portmaster
 cd /usr/ports
 portmaster --no-confirm -G textproc/libxslt devel/icu devel/libdispatch devel/libffi
