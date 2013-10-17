@@ -8,11 +8,11 @@ This is a collection of initial configuration script.
   This script constructs Objective-C 2.0 environment on FreeBSD 9.2 using these components.
   To run this script, type this on command-line. You should have ports tree and `curl` before installing.
   
-      setenv BATCH yes
-      portsnap fetch extract update
-      cd /usr/ports/ftp/curl
-      make install clean BATCH=yes
-      curl https://raw.github.com/eonil/bootstrap/master/objc2-fb9.sh | tcsh
+        setenv BATCH yes
+        portsnap fetch extract update
+        cd /usr/ports/ftp/curl
+        make install clean BATCH=yes
+        curl https://raw.github.com/eonil/bootstrap/master/objc2-fb9.sh | tcsh
 
   - libobjc2 1.7
   - gnustep-base 1.24.5
