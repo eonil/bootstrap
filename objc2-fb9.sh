@@ -26,6 +26,8 @@ portmaster --no-confirm -G textproc/libxslt devel/icu devel/libdispatch devel/li
  
 echo "GNUstep(make:2.6.5, base:1.24.5) + libobjc2(1.7) on FreeBSD 9.2."
 echo "Versions are specified explicitly to prevent future break."
+echo "Now downloading sources from SVN. This will take pretty long to"
+echo "initiate, so please wait for a few minutes."
 cd ~/
 mkdir -p t1
 cd t1
