@@ -1,6 +1,7 @@
 #!/bin/tcsh
 echo "Written for tcsh."
 echo "Run with /bin/tsch explicitly."
+echo "Soon to be changed to zsh (with set-k)."
 
 echo "This script constructs Objective-C 2.0 environment on FreeBSD 9.2"
 echo "Referenced from: http://brilliantobjc.blogspot.kr/2012/12/cocoa-on-freebsd.html"
@@ -83,37 +84,58 @@ echo "to use Clang for all further builds."
  
  
  
- 
- 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 echo "Now you have working GNUstep installation."
 echo "Let's write a test program."
- 
+
 cat << +END > main.m
 #import <Foundation/Foundation.h>
-@interface AAA : NSObject 
+@interface AAA : NSObject
 - (id)test;
 @end
 @implementation AAA
-- (id)test{ return @"Test OK."; }
+- (id)test
+{
+    return @"Test OK.";
+}
+- (void)dealloc
+{
+    NSLog (@"ARC dealloc!");
+}
 @end
 int main(int c, char** v)
 {
-  @autoreleasepool
-  {
-    AAA* aaa = [[AAA alloc] init];
-    NSLog(@"%@", [aaa test]);
-    return 1;
-  }
+    @autoreleasepool
+    {
+        void (^block1)(int) = ^(int num)
+        {
+            AAA* aaa = [[AAA alloc] init];
+            NSLog(@"%@, %@", [aaa test], @(num));
+        };
+        block1(1343);
+        return 0;
+    }
 }
 +END
 cat main.m
- 
+
 rm -f ./a.out
-set EE_GNUSTEP_LIB=/usr/local/GNUstep/System/Library
-clang -I $EE_GNUSTEP_LIB/Headers -I /usr/local/include -L /usr/local/lib -l objc -L $EE_GNUSTEP_LIB/Libraries -l gnustep-base main.m
+clang -I/usr/local/include -L/usr/local/lib -lobjc -lgnustep-base -fblocks -fobjc-arc -fobjc-abi-version=3 *.m
 ./a.out
- 
-rm -f ./a.out
-clang -I /usr/local/include -L /usr/local/lib -l objc -l gnustep-base -fblocks *.m
-./a.out
+
+
+
