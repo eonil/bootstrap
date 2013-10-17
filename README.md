@@ -1,5 +1,5 @@
-Bootstrap
-=========
+Work Environment Bootstrapper
+=============================
 
 This is a collection of initial configuration script.
 
