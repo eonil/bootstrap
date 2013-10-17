@@ -1,7 +1,10 @@
 #!/bin/tcsh
 echo "Written for tcsh."
 echo "Run with /bin/tsch explicitly."
- 
+
+echo "This script constructs Objective-C 2.0 environment on FreeBSD 9.2"
+echo "Referenced from: http://brilliantobjc.blogspot.kr/2012/12/cocoa-on-freebsd.html"
+
  
 
 echo "Switch to Clang. Ensure you're using 3.3 or above."
@@ -24,7 +27,7 @@ portmaster --no-confirm -G textproc/libxslt devel/icu devel/libdispatch devel/li
 echo "GNUstep(make:2.6.5, base:1.24.5) + libobjc2(1.7) on FreeBSD 9.2."
 echo "Versions are specified explicitly to prevent future break."
 cd ~/
-mkdir t1
+mkdir -p t1
 cd t1
 pkg_add -r subversion gmake
 svn co http://svn.gna.org/svn/gnustep/libs/libobjc2/releases/1.7 libobjc2-1.7 &
@@ -50,7 +53,7 @@ echo "Now we need to set some path to GNUstep to use gnustep-make."
 echo "source /usr/GNUstep/System/Library/Makefiles/GNUstep.csh"
  
 cd base-1_24_5
-echo "I don't know why this named in this way… but the switch
+echo "I don't know why this named in this way… but the switch"
 echo " --disable-unicodeconstants actually just force to use UTF-8."
 echo "So no not worry about encoding."
 ./configure --enable-fake-main --disable-unicodeconstants --disable-tls
