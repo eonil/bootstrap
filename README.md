@@ -1,4 +1,5 @@
-bootstrap
+Bootstrap
 =========
 
-bootstrap
+This is a collection of initial configuration script.
+
