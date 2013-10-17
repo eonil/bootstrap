@@ -12,6 +12,7 @@ This is a collection of initial configuration script.
         portsnap fetch extract update
         cd /usr/ports/ftp/curl
         make install clean BATCH=yes
+        
         curl https://raw.github.com/eonil/bootstrap/master/objc2-fb9.sh | tcsh
 
   - libobjc2 1.7
