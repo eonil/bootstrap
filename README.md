@@ -37,3 +37,6 @@ This is a collection of initial configuration script.
   If you want support for them investigate this site which has original script I referenced from.
   [http://brilliantobjc.blogspot.kr/2012/12/cocoa-on-freebsd.html](http://brilliantobjc.blogspot.kr/2012/12/cocoa-on-freebsd.html)
 
+- `objc2-centos6.sh`
+
+  Experimental build script for CentOS 6.
