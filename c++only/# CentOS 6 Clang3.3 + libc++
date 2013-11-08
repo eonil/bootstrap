@@ -1,0 +1,112 @@
+# CentOS 6 Clang3.3 + libc++
+# ==================================
+# Do not use old Clang 3.0 for bootstrapping...
+# which doesn't work.
+# Perl is required in some LLVM build processes.
+# Python is required for testing.
+set -e
+yum -y install gcc gcc-c++ make glibc-devel perl python
+
+export SYSLIBPATH=/usr/lib64
+
+
+
+
+
+
+
+# Build Clang using GCC and libstdc++
+# -----------------------------------
+cd ~/
+mkdir t1
+cd t1
+
+curl -O http://llvm.org/releases/3.3/cfe-3.3.src.tar.gz &
+curl -O http://llvm.org/releases/3.3/llvm-3.3.src.tar.gz &
+curl -O http://llvm.org/releases/3.3/compiler-rt-3.3.src.tar.gz &
+curl -O http://llvm.org/releases/3.3/clang-tools-extra-3.3.src.tar.gz &
+curl -O http://llvm.org/releases/3.3/libcxx-3.3.src.tar.gz &
+curl -O http://llvm.org/releases/3.3/lldb-3.3.src.tar.gz &
+
+wait
+echo "Downloading done."
+
+tar zxvf cfe-3.3.src.tar.gz
+tar zxvf llvm-3.3.src.tar.gz
+tar zxvf compiler-rt-3.3.src.tar.gz
+tar zxvf clang-tools-extra-3.3.src.tar.gz
+tar zxvf libcxx-3.3.src.tar.gz
+tar zxvf lldb-3.3.src.tar.gz
+
+mv llvm-3.3.src llvm
+mv cfe-3.3.src llvm/tools/clang
+mv clang-tools-extra-3.3.src llvm/tools/clang/extra
+mv compiler-rt-3.3.src llvm/projects/compiler-rt
+
+cd llvm
+./configure
+
+# 4GB of system RAM cannot support over 4 threads.
+# Crashes in the middle of process.
+# If you have enough system resources, building 
+# would not take that much longer...
+make -j4 install
+
+
+
+
+
+
+
+
+
+
+
+# Build libc++ using Clang and libstdc++
+# --------------------------------------
+cd ~/t1/libcxx-3.3.src/lib
+./buildit
+cp libc++.so.1.0 $SYSLIBPATH
+cd $SYSLIBPATH
+ln -sf libc++.so.1 libc++.so
+ln -sf libc++.so.1.0 libc++.so.1
+
+# Let system to rescan shared libraries. Linux requires this procedure.
+ldconfig
+
+
+
+
+# Re-build Clang using Clang and libc++
+# -------------------------------------
+cd ~/t1/llvm
+make clean
+make -j4 install
+
+
+
+# Re-build libc++ using Clang and libc++
+# --------------------------------------
+
+
+
+
+
+
+
+# Test Clang.
+# -----------
+cd ~/t1/llvm/tools/clang/test
+make 
+
+
+# Test libc++.
+# -----------
+cd ~/t1/libcxx-3.3.src/test
+./testit
+
+
+
+
+
+
